@@ -18,7 +18,11 @@ namespace PathCreation.Examples
                 pathCreator.pathUpdated += OnPathChanged;
             }
         }
-
+        public void SetPath(PathCreator path)
+        {
+            pathCreator = path;
+            pathCreator.pathUpdated += OnPathChanged;
+        }
         void Update()
         {
             if (pathCreator != null)

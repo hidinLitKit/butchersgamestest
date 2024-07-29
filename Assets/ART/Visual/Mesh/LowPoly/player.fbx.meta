@@ -3,7 +3,32 @@ guid: 1a585d13360625d40ab0b2e0946f87be
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Enviro_mat
+    second: {fileID: 2100000, guid: 35be4ed5a736e284390e044d4ea5e73c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enviro_mat
+    second: {fileID: 2100000, guid: 883d5ccdd62356648acef0d4f4a84fce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: player_mat
+    second: {fileID: 2100000, guid: 9ed5d0cd1aa751a4b9e5bf7052123ea4, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: atlas
+    second: {fileID: 2800000, guid: 09d61a0a4ab788f47b6efbd850659002, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: atlas_end
+    second: {fileID: 2800000, guid: 87d574021b010d44f89bff34c0bd2f56, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

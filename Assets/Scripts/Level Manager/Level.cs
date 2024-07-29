@@ -5,6 +5,7 @@ namespace ButchersGames
     public class Level : MonoBehaviour
     {
         [SerializeField] private Transform playerSpawnPoint;
+        [SerializeField] private PathCreation.PathCreator _path;
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

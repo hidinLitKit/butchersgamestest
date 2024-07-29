@@ -5,10 +5,15 @@ using System;
 
 public static class GameEvents
 {
+    public static Action onGameStart;
     public static Action onWin;
     public static Action onLose;
     public static Action<float> onChangeScore;
 
+    public static void GameStart()
+    {
+        onGameStart?.Invoke();
+    }
     public static void Win()
     {
         onWin?.Invoke();
