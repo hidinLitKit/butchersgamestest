@@ -8,7 +8,7 @@ public static class GameEvents
     public static Action onGameStart;
     public static Action onWin;
     public static Action onLose;
-    public static Action<float> onChangeScore;
+    public static Action<float, float> onChangeScore;
 
     public static void GameStart()
     {
@@ -22,8 +22,8 @@ public static class GameEvents
     {
         onLose?.Invoke();
     }
-    public static void ChangeScore(float value)
+    public static void ChangeScore(float value, float maxValue)
     {
-        onChangeScore?.Invoke(value);
+        onChangeScore?.Invoke(value, maxValue);
     }
 }

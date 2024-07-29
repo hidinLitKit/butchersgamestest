@@ -13,6 +13,7 @@ public class PlayerModel : MonoBehaviour
     [SerializeField] private List<PlayerRender> m_Players = new List<PlayerRender>();
     
     private PlayerAnimations _animations;
+    private PlayerType _currentType = PlayerType.Rich;
     private void Awake()
     {
         _animations = GetComponentInChildren<PlayerAnimations>();
@@ -21,6 +22,8 @@ public class PlayerModel : MonoBehaviour
 
     public void SetPlayer(PlayerType type)
     {
+        if (_currentType == type) return;
+
         ResetPlayer();
 
         int index;
@@ -28,6 +31,8 @@ public class PlayerModel : MonoBehaviour
 
         _animations.SetAnimation(m_Players[index].AnimationType);
         m_Players[index].SkinType.enabled = true;
+
+        _currentType = type;
     }
     public void SetSpecialAnim(AnimationType type)
     {

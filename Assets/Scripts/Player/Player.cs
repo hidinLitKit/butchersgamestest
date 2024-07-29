@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _model.SetPlayer(PlayerType.Decent);
+        _model.SetPlayer(PlayerType.Poor);
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -49,16 +49,23 @@ public class Player : MonoBehaviour
         if (other.tag == "Finish")
         {
             /* GameEvents.instance.gameWon.SetValueAndForceNotify(true);*/
-            GameEvents.Win();
+            States.instance.Push<WinState>();
         }
     }
     private void CheckScore()
     {
         if (_score <= 0)
         {
-            GameEvents.Lose();
+            States.instance.Push<LoseState>();
             return;
         }
-        GameEvents.ChangeScore(_score % m_maxScore);
+        GameEvents.ChangeScore(_score, m_maxScore);
+        ModelFlip();
+    }
+    private void ModelFlip()
+    {
+        if (_score <= m_maxScore * 0.33f) _model.SetPlayer(PlayerType.Poor);
+        else if (_score <= m_maxScore * 0.77f) _model.SetPlayer(PlayerType.Decent);
+        else _model.SetPlayer(PlayerType.Rich);
     }
 }
