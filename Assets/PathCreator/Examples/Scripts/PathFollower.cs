@@ -11,6 +11,13 @@ namespace PathCreation.Examples
         public float speed = 5;
         float distanceTravelled;
 
+        private bool _canMove = false;
+        
+        public void SetMove(bool val)
+        {
+            _canMove = val;
+        }
+
         void Start() {
             if (pathCreator != null)
             {
@@ -25,7 +32,7 @@ namespace PathCreation.Examples
         }
         void Update()
         {
-            if (pathCreator != null)
+            if (pathCreator != null && _canMove)
             {
                 distanceTravelled += speed * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PathCreation;
+using ButchersGames;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float m_limitX;
     [SerializeField] private float m_sidewaySpeed;
     [SerializeField] private Transform m_player;
+    [SerializeField] private Collider m_playerCollider;
+    [SerializeField] private PathCreation.Examples.PathFollower m_follower;
 
-    private bool _lockControls;
     private float _finalPos;
     private float _currentPos;
 
@@ -17,38 +19,42 @@ public class PlayerController : MonoBehaviour
         GameEvents.onGameStart += UnlockControls;
         GameEvents.onLose += LockControls;
         GameEvents.onWin += LockControls;
-    }
-    private void Start()
-    {
-        StartCoroutine(MovingPlayer());
+
+        LevelManager.Default.OnLevelStarted += ResetPlayer;
     }
     private void OnDisable()
     {
         GameEvents.onGameStart -= UnlockControls;
         GameEvents.onLose -= LockControls;
         GameEvents.onWin -= LockControls;
+
+        LevelManager.Default.OnLevelStarted -= ResetPlayer;
     }
     private void LockControls()
     {
-        _lockControls = true;
+        m_playerCollider.enabled = false;
+        m_follower.SetMove(false);
         StopAllCoroutines();
     }
     private void UnlockControls()
     {
-        _lockControls = false;
+        m_playerCollider.enabled = true;
+        m_follower.SetMove(true);
         StartCoroutine(MovingPlayer());
+    }
+    private void ResetPlayer()
+    {
+        Level lvl = LevelManager.Default.CurrentGameLevel;
+        m_player.localPosition = lvl.PlayerSpawnPoint.position;
+        m_follower.SetPath(lvl.Path);
     }
     IEnumerator MovingPlayer()
     {
         while(true)
         {
             yield return new WaitForEndOfFrame();
-            //MovePlayer();
+            MovePlayer();
         }
-    }
-    private void Update()
-    {
-        MovePlayer();
     }
     private void MovePlayer()
     {

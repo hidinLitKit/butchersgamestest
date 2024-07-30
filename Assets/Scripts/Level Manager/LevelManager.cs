@@ -28,8 +28,11 @@ namespace ButchersGames
         [SerializeField] bool editorMode = false;
         [SerializeField] LevelsList levels;
         public List<Level> Levels => levels.lvls;
+        public Level CurrentGameLevel => _currentGameLevel;
 
         public event Action OnLevelStarted;
+
+        private Level _currentGameLevel;
 
 
         public void Init()
@@ -124,11 +127,11 @@ namespace ButchersGames
 #if UNITY_EDITOR
             if (Application.isPlaying)
             {
-                Instantiate(level, transform);
+                _currentGameLevel =  Instantiate(level, transform);
             }
             else
             {
-                PrefabUtility.InstantiatePrefab(level, transform);
+                _currentGameLevel = (Level) PrefabUtility.InstantiatePrefab(level, transform);
             }
 #else
                 Instantiate(level, transform);

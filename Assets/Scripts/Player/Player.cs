@@ -18,6 +18,19 @@ public class Player : MonoBehaviour
     {
         _model.SetPlayer(PlayerType.Poor);
     }
+    private void OnEnable()
+    {
+        ButchersGames.LevelManager.Default.OnLevelStarted += ResetPlayer;
+    }
+    private void OnDisable()
+    {
+        ButchersGames.LevelManager.Default.OnLevelStarted -= ResetPlayer;
+    }
+    public void ResetPlayer()
+    {
+        _score = 25f;
+        _model.SetPlayer(PlayerType.Poor);
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Collectable")
@@ -35,16 +48,10 @@ public class Player : MonoBehaviour
         }
         if (other.tag == "Obstacle")
         {
-            /*playerAnim.SetTrigger("kick");
-            other.GetComponent<Block>().CheckHit(); */
         }
-        if (other.tag == "Gate")
-            //other.GetComponent<Gate>().ExecuteOperation();
-        if (other.tag == "Saw")
+        if (other.tag == "Door")
         {
-            /*GameEvents.instance.gameLost.SetValueAndForceNotify(true);
-            bloodParticles.SetActive(true);
-            GetComponent<Collider>().enabled = false;*/
+            other.GetComponent<Door>().OpenDoor();
         }
         if (other.tag == "Finish")
         {

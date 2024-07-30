@@ -6,6 +6,8 @@ namespace ButchersGames
     {
         [SerializeField] private Transform playerSpawnPoint;
         [SerializeField] private PathCreation.PathCreator _path;
+        public Transform PlayerSpawnPoint => playerSpawnPoint;
+        public PathCreation.PathCreator Path => _path;
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -21,5 +23,10 @@ namespace ButchersGames
         }
     }
 #endif
+        private void OnEnable()
+        {
+            _path.TriggerPathUpdate();
+        }
     }
+    
 }

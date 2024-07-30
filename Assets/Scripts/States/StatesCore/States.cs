@@ -34,7 +34,7 @@ public class States : MonoBehaviour
 
 	public void Swap<T>() where T : GameState
 	{
-		//m_stack.Clear();
+		m_stack.Clear();
 
 		var nextState = m_states.Find(x => x is T);
 		if (nextState)

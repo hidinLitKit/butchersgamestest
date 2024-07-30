@@ -3,7 +3,27 @@ guid: 0c9ef1338be59ec4aa01590bbca1250e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 6523e0835e0407942b2d33a8c229367b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: props
+    second: {fileID: 2100000, guid: 02dc9bccba9b0a843adbeae8012e3f10, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: atlas
+    second: {fileID: 2800000, guid: fd96d51042fefc24990f34df84131c4a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_texture
+    second: {fileID: 2800000, guid: d122662454f8add48a6b011222f18c5b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

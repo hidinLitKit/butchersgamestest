@@ -7,7 +7,6 @@ public class GameplayState : GameState
 	protected override void OnEnable()
 	{
 		base.OnEnable();
-		GameEvents.GameStart();
 	}
 
 	protected override void OnDisable()
